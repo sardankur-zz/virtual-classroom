@@ -1,0 +1,9 @@
+<?php
+	$mysql_server = '127.0.1.1';
+	$mysql_login = 'root';
+	$mysql_password = 'password';
+	$mysql_database = 'vc';
+	$conn = mysql_connect($mysql_server, $mysql_login, $mysql_password) or die(mysql_error());
+	mysql_select_db($mysql_database, $conn);
+	
+?>

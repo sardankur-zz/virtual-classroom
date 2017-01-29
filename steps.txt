@@ -1,0 +1,9 @@
+1.login
+2.in case not listed in the db, insert an entry.
+3.then show his/her calendar -> might have to create a unique calendar
+4.populate tht unique calendar to show => iframe
+5.All links are shown via <a> tag. Put the link to the class. while creating event itself the event id and the usr id is set
+	so the correct redirected url is shown
+6.to create new event use REST
+7.to delete use iframe itself
+8.invite has to be sent by email

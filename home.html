@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<title>
+			Virutal Classroom
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>		
+		<link rel="stylesheet" type="text/css" href="style/homeStyle.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="script/home.js"></script>		
+		<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+		
+		<script type="text/javascript">
+
+			function refreshCalendar()
+			{
+				location.reload();
+			}									
+			
+		</script>
+
+	</head>
+	<body>		
+	
+		<div id = "divHeader"  style = "width:100%;height:5%">
+			<ul class = "ulListHorizontal">
+				<li class = "liListHorizontalLeft">
+					<table class = "tblHolderHeaderNavigation" style = "margin:0;padding:0"><tr><td>
+					<img src = "image/virtual.jpg" alt = "no logo" width = "150px" height = "50px" style = "margin:0;padding:0" /></td></tr></table>
+				</li>				
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					<div id = "divProfile" style = "width:100%;height:100%"></div>
+				</td></tr></table>
+				</li>				
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					<a href = "http://localhost/se/about.html" style = "text-decoration:none">About</a>
+				</td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					<a href = "http://localhost/se/home.html" style = "text-decoration:none">Home</a>
+				</td></tr></table>
+				</li>												
+			</ul>
+		</div>		
+		<div id = "divLogin" ><table class = "tblCenterPosition"><tr><td>
+				<input id = "btnLogin" type = "button" class = "button" value = "Login" /> 
+			</td></tr></table>
+		</div>
+		<div id = "divBody" style = "width:100%;height:95%;display:none">
+			<div id = "divButtonHolder" style = "width:100%;height:10%">
+				<table class = "tblCenterPosition"><tr>
+				<td>
+					<h2><span id = "spanHeaderInfo" style = "float:left">Schedule</span></h2><input value = "Refresh" type = "button" id ="btnRefreshCalendar" class = "button" style = "visibility:hidden" onclick = "refreshCalendar()" />
+				</td>
+				<td>
+					<input type = "button" value = "CREATE EVENT" class = "button" id ="btnGroups" onclick = "gotoCreateEvent()" style = "float:right" />
+					<input type = "button" value = "GROUPS" class = "button"  id ="btnCreateEvent" onclick = "gotoGroups()" style = "float:right"/>			
+					<input type = "button"  value = "SCHEDULE" class = "button" id ="btnSchedule" onclick = "gotoCalendar()" style = "float:right"/>					
+				</td>				
+				</tr></table>
+			</div>
+			<div style = "width:100%;height:90%">
+				<div id = "divSchedule" style = "display:block;width:100%;height:100%">
+					
+				</div>
+				<div id = "divCreateEvent" style = "display:none;;width:100%;height:100%">							
+					<table class = "tblCenterPosition" ><tr><td>						
+							<div style = "margin:35px;width:1275px;height:400px;background-color:#f1f1f1;text-align:left">
+								<table>
+									<tr>
+										<td>
+											Event Name
+										</td>
+										<td>
+											<input type ="text" id = "txtboxEventName" onblur="validateEvent()"/></label>
+										</td>
+										<td>
+											<p id="toolTipemptyEvent" style:text-decoration:blink;>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Event Description
+										</td>
+										<td>
+											<input type ="text" id = "txtboxEventDescription"/></label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Start Date
+										</td>
+										
+										<td>
+											<input type ="date" id = "txtboxStartDate"/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											StartTime
+										</td>
+										
+									
+										<td>
+											<input type ="text" id = "txtboxStartTime"  onblur="validateStartTime()" placeholder="hh:mm"/>
+										</td>
+										<td>
+											<p id="toolTipstartTime">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											End Date
+										</td>
+										<td>
+											<input type ="date" id = "txtboxEndDate"/>
+										</td>
+										
+									</tr>
+									<tr>
+										<td>
+											EndTime
+										</td>
+										<td>
+											<input type ="text" id = "txtboxEndTime" onblur="validateEndTime()" placeholder="hh:mm"/>
+										</td>
+										<td>
+											<p id="toolTipendTime"/>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Group
+										</td>
+										<td>
+											<div id = "divSelectGroup" >
+											
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>										
+											<br /><input type = "submit" class = "button" style ="margin-left:20px" onclick = "setUpLib()"/>
+										</td>
+										<td>										
+										</td>
+									</tr>
+								</table>	
+							
+							</div>
+						
+					</td></tr></table>
+				</div>
+				<div id = "divGroup" style = "display:none;width:100%;height:100%;">					
+					<table class = "tblCenterPosition" ><tr><td>	
+							<div style = "width:5%;height:90%;float:left"></div>
+							<div style = "width:90%;height:90%;float:left">
+								<div id = "divListMembers" style = "width:49%;height:100%;border-right:1px solid black;float:left;background-color:#f1f1f1;" >									
+									
+								</div>
+								<div id = "divCreateGroup" style = "width:50%;height:100%;float:left;background-color:#f1f1f1;" >
+									<div id = "divCreateGroupDetails" style = "width:50%;height:100%;float:left;">
+										Create Group<br /><br />
+										<table>
+											<tr>
+												<td>Group Name</td>
+												<td><input type = "text" id = "txtboxGroupName" /></td>
+											</tr>
+											<tr>
+												<td >
+													<input type = "button" id = "btnSubmitNewGroup" value = "Submit" class = "button" onclick = "makeNewGroup()" />
+												</td>
+												<td></td>
+												
+											</tr>
+										</table>
+									</div>
+									<div id = "divStudentList" style = "width:50%;height:400px;float:left;overflow-y:auto">
+									</div>									
+								</div>
+								
+							</div>
+							<div style = "width:5%;height:90%;float:left"></div>
+					</td></tr></table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

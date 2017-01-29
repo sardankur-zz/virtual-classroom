@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<title>
+			Virutal Classroom - Teacher
+		</title>
+		
+		
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>		
+		<link rel="stylesheet" type="text/css" href="style/teacherStyle.css" />		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
+		<script src='https://cdn.firebase.com/v0/firebase.js'></script>
+		<script src="https://bit.ly/RTCPeerConnection-v1-4"></script>
+		<script src="script/teacher/hangout.js"> </script>
+		<script src="script/teacher/hangout-ui.js"></script>
+		<script src="script/teacher/broadcast.js"></script>
+		<script src="script/teacher/broadcast-ui.js"></script>
+
+		<script type = "text/javascript">							
+		</script>
+	</head>
+	<body onload = "init();">		
+		<div id = "divHeader">
+			<ul class = "ulListHorizontal">
+				<li class = "liListHorizontalLeft">
+					<table class = "tblHolderHeaderNavigation" style = "margin:0;padding:0"><tr><td>
+					<img src = "image/virtual.jpg" alt = "no logo" width = "150px" height = "50px" style = "margin:0;padding:0" /></td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					<div id = "divProfile" style = "width:100%;height:100%"></div>
+				</td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					Help
+				</td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					About
+				</td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					Home
+				</td></tr></table>
+				</li>											
+			</ul>
+		</div>		
+		<div id = "divBody">
+			<div id = "divChatVideo" >
+				<div id = "divVideo">
+					<div id = "divOptions" style = "display:block">	
+						<div style = "padding:10px">
+							<span>Please select an option</span><br />
+							 <select id="broadcasting-option" >
+								<option value =  "Audio + Video">Audio + Video</option>
+								<option value =  "Only Audio">Only Audio</option>	
+								<option value = "Screen">Screen</option>
+							</select><br /><br />
+							<!--
+							<span>Please choose a broadcast name. This will be used as a password for students to login.</span><br />-->							
+							<input type = "button" id="start-conferencing" class = "button" value = "Start Broadcasting" />
+						</div>
+					</div>
+					<div id = "divShowBroadcast">						
+					</div>
+				</div>
+				<div id = "divChat">
+					
+					<!--this is the chat part--------------->
+
+					<table>
+						<tr>							
+							<td>
+								<input class = "button" type ="button" value = "View Chat" id = "btnViewChat"/>
+							</td>
+							<td>
+								<input class = "button" type ="button" value = "View Invitations" id = "btViewInvitations"/>
+							</td>
+						</tr>
+					</table>
+
+					<div id = "divViewChat">
+						<table id="chat-output" cellspacing = "10" style = "overflow-y:auto;height:70%"></table>						
+						<table id="chat-table" >
+							<tr>
+								<td style="text-align: center;">
+									
+									<textarea id = "chat-message" cols = "40" rows = "3" noresize ></textarea>
+									<button id="post-chat-message" style = "display:none">Post Message</button>								
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					<div id = "divViewInvitation" style = "display:none">
+						<table id="invitations" style = "overflow-y:auto;height:60%;display:block"></table>
+					</div>
+
+					<!--this is the chat part--------->
+				</div>
+			</div>
+			<div id = "divDocs" >
+				<div id = "divDisplayDocs">
+					<iframe id="frame1" style="display:none;width:100%;height:100%" ></iframe>
+				</div>
+				
+				<div id = "divControlDoc" style = "padding:5px">
+					<center><input type="file" id="filePicker" style="display:block" class = "button" /></center>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>

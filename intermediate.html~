@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<!--https://accounts.google.com/logout-->
+<html>	
+	<head>
+		<title>
+			Virutal Classroom
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>		
+		<link rel="stylesheet" type="text/css" href="style/homeStyle.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		
+		<script type = "text/javascript">
+
+			host = "3kvf.localtunnel.com";
+		
+			(function($) {
+				$.QueryString = (function(a) {
+					if (a == "") return {};
+					var b = {};
+					for (var i = 0; i < a.length; ++i)
+					{
+						var p=a[i].split('=');
+						if (p.length != 2) continue;
+						b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+					}
+					return b;
+				})(window.location.search.substr(1).split('&'))
+			})(jQuery);
+		
+			var clientId = '621146298370.apps.googleusercontent.com';
+			var scopes = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/drive';
+			
+			function handleClientLoad() 
+			{
+				window.setTimeout(checkAuth,1);
+			}
+
+			function checkAuth() 
+			{
+				gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);		
+			}
+
+			function handleAuthResult(authResult) 
+			{				
+				console.log(authResult);					
+				if (authResult && !authResult.error) 
+				{			
+					acToken = authResult['access_token'];
+					getUserInfo();																		
+				} 
+				else 
+				{
+					gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);							
+				}
+			}
+			
+			function getUserInfo() 
+			{
+				$.ajax({
+					url: 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + acToken,
+					data: null,
+					success: function(resp) 
+					{
+						console.log(resp);   
+						var user    =   resp;
+						emailid = user['email'];
+						username = user['name'];																	
+							
+						var eventId = $.QueryString["eventId"];
+						var groupId = $.QueryString["groupId"];
+
+						$.ajax({
+							 async: false,
+							 type: 'GET',
+							 url: 'db/get.php?mode=getEventDetails&eventId='+eventId,
+							 success: function(data) 
+							 {
+								console.log(data);
+								var eventDetails = JSON.parse(data);							
+								emailTutor = eventDetails['tutorEmail'];
+								if(emailid === emailTutor)
+								{									
+									window.location.href = "http://"+host+"/se/teacher.html?eventId="+eventId + "&groupId=" + groupId;
+								}
+								else
+								{								
+									window.location.href = "http://"+host+"/se/student.html?eventId="+eventId + "&groupId=" + groupId;
+								}
+							}
+						});	 							
+						// get email id from url string		
+						
+					},
+					dataType: "jsonp"
+				});
+			}
+		</script>
+				
+		<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+		
+		
+	</head>
+	<body>		
+	
+		
+	</body>
+</html>

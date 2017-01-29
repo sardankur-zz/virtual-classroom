@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<title>
+			Virutal Classroom - Student
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>		
+		<link rel="stylesheet" type="text/css" href="style/studentStyle.css" />	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>
+		<script src='https://cdn.firebase.com/v0/firebase.js'></script>
+		<script src="https://bit.ly/RTCPeerConnection-v1-4"></script>
+		<script src="script/student/hangout.js"> </script>
+		<script src="script/student/hangout-ui.js"></script>
+		<script src="script/student/broadcast.js"></script>
+		<script src="script/student/broadcast-ui.js"></script>
+
+		
+		<script type = "text/javascript">
+					
+			
+		</script>
+	</head>
+	<body onload = "init()">		
+		<div id = "divHeader">
+			<ul class = "ulListHorizontal">
+				<li class = "liListHorizontalLeft">
+					<table class = "tblHolderHeaderNavigation" style = "margin:0;padding:0"><tr><td>
+					<img src = "image/virtual.jpg" alt = "no logo" width = "120px" height = "30px" style = "margin:0;padding:0" /></td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					<div id = "divProfile" style = "width:100%;height:100%"></div>
+				</td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					Help
+				</td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					About
+				</td></tr></table>
+				</li>
+				<li class = "liListHorizontalRight">
+				<table class = "tblHolderHeaderNavigation"><tr><td>
+					Home
+				</td></tr></table>
+				</li>											
+			</ul>
+		</div>		
+		<div id = "divBody">
+			<div id = "divChatVideo" >
+				<div id = "divVideo">
+					<div id = "divShowBroadcast">						
+					</div>
+				</div>
+				<div id = "divChat">
+					<table >
+						<tr>							
+							<td>
+								<input type = "button" id = "btnAskQuestion"  value = "Raise Hand" />								
+							</td>
+						</tr>
+					</table>
+					<table id="chat-output" cellspacing = "10" style = "overflow-y:auto;height:65%"></table>
+					<table id="chat-table" >
+						<tr>
+							<td style="text-align: center;">					
+								<textarea id = "chat-message" cols = "40" rows = "3" noresize disabled></textarea>
+								<button id="post-chat-message" disabled style = "display:none">Post Question</button>								
+							</td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+			<div id = "divDocs" >
+				<div style = "width:100%;height:7%">
+					<iframe id="frame2" style="display:none"></iframe>		
+					<table class = "tblHolderHeaderNavigation"><tr><td>
+						<input type = "button" onclick = "populateIframe('frame2')" class = "button" value = "Download" style = "float:right"/>
+					</td></tr></table>
+				</div>
+				
+				<div id = "divDisplayDocs" style = "width:100%;height:92%">
+					<iframe id="frame1" style="display:none;width:100%;height:100%" ></iframe>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

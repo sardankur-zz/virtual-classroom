@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<title>
+			Virutal Classroom
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>		
+		<link rel="stylesheet" type="text/css" href="style/style.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		
+		<script type = "text/javascript">
+		
+		function myfunc()
+			{
+				username=document.getElementById("username").value;
+				pass=document.getElementById("pass").value;
+				error = document.getElementById("spanErrorMessage");					
+				if(username === "" || pass === "")
+				{
+					error.innerHTML = "Incorrect Username or Password";									
+				}				
+			}		
+	</script>
+	</head>
+	<body>		
+		<table class = "tblCenterPosition" ><tr><td>
+		<div id="divSignIn" name="div2">
+			<h2 id="login" name="login">Sign in by Google</h2>
+			<br /><br />
+			<!--
+				USERNAME: <input type="textbox" id="username" name="username"><br />
+				PASSWORD:<input type="password" id="pass" name="pass"><br />	 -->
+			<input type="submit" id="btnSignIn" name="signin" onclick="login()" value = "sign in" class ="button" />
+		</div>		
+		</td></tr></table>		
+	</body>
+</html>
